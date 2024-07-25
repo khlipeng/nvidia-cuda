@@ -16,6 +16,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 ENV CUDA_VERSION 10.2.89
 ENV CUDA_PKG_VERSION 10-2=$CUDA_VERSION-1
 
+RUN apt-key del 7fa2af80
+RUN apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/3bf863cc.pub
+RUN apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64/7fa2af80.pub
+
 # For libraries in the cuda-compat-* package: https://docs.nvidia.com/cuda/eula/index.html#attachment-a
 RUN apt-get update && apt-get install -y --no-install-recommends \
     cuda-cudart-$CUDA_PKG_VERSION \
@@ -70,6 +74,6 @@ LABEL com.nvidia.cudnn.version="${CUDNN_VERSION}"
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libcudnn7=$CUDNN_VERSION-1+cuda10.2 \
-    libcudnn7-dev=$CUDNN_VERSION-1+cuda10.2 \
-    && apt-mark hold libcudnn7 && \
-    rm -rf /var/lib/apt/lists/*
+    libcudnn7-dev=$CUDNN_VERSION-1+cuda10.2  \
+    && apt-mark hold libcudnn7 \
+    && rm -rf /var/lib/apt/lists/*
