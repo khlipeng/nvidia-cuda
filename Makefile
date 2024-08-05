@@ -9,6 +9,6 @@ build-cuda10.2-cudnn7-ubuntu2004-runtime:
 build-cuda10.2-cudnn7-ubuntu2004-dev:
 	docker buildx build --push --platform=linux/amd64	\
 		--file=cuda10.2-cudnn7-ubuntu2004-dev.Dockerfile \
-		--tag=ghcr.io/khlipeng/nvidia-cuda:cuda10.2-cudnn7-ubuntu2004-dev-arm64	\
+		--tag=ghcr.io/khlipeng/nvidia-cuda:cuda10.2-cudnn7-ubuntu2004-dev-amd64	\
 		.
 
